@@ -14,7 +14,7 @@ class BinaryTree {
 		}
 		
 		var nodeCurrent = this.root;
-		while (true){
+		while (nodeCurrent){
 
 			if (nodeCurrent.data > data) // case of left
 				if (!nodeCurrent.left) {
@@ -35,12 +35,22 @@ class BinaryTree {
 		}
 	}
 
-	contains(data) {
-		
+	contains(data) {		
+		var nodeCurrent = this.root
+		while(nodeCurrent)
+		{
+			if (nodeCurrent.data == data)
+				return true;
+			else if (nodeCurrent.data > data)
+				nodeCurrent = nodeCurrent.left? nodeCurrent.left : false;
+			else if (nodeCurrent.data < data) 
+				nodeCurrent = nodeCurrent.right? nodeCurrent.right : false;
+		}
+		return false;
 	}
 
 	remove(data) {
-
+		
 	}
 
 	size() {
