@@ -34,7 +34,6 @@ class BinaryTree {
 	contains(data) {		
 		var nodeCurrent = this.root;
 		while(nodeCurrent) {
-
 			if (nodeCurrent.data == data)
 				return true;
 			else if (nodeCurrent.data > data)
@@ -92,11 +91,17 @@ class BinaryTree {
 	}
 
 	size() {
-		var count = this.root? 1 : 0;
-		if (!count) return count;
+		if (!this.root) return 0;
+		return this.countDaughters(this.root);
+	}
 
-		var nodeCurrent = this.root;
-		while (nodeCurrent)
+	countDaughters(nodeCurrent) {
+		var count = 1;
+		if (nodeCurrent.left)
+			count += this.countDaughters(nodeCurrent.left);
+		if (nodeCurrent.right)
+			count += this.countDaughters(nodeCurrent.right);
+		return count;
 	}
 
 	isEmpty() {
